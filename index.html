@@ -469,17 +469,34 @@
             </ul>
 
             <h3>Sample UFW Configuration</h3>
-            <pre><code>Status: active
+            <pre>
+                <code>
+Status: active
+Logging: on (medium)
 Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
 
 To                         Action      From
 --                         ------      ----
-51820/udp                  ALLOW IN    Anywhere        # Wireguard VPN
-59777/tcp on wg0           ALLOW IN    10.6.0.0/24     # SSH-over-VPN
-53 on wg0                  ALLOW IN    10.6.0.0/24     # DNS-over-VPN
-10.6.0.1 4443/tcp on wg0   ALLOW IN    10.6.0.0/24     # Pi-hole WebUI
-443/tcp                    ALLOW IN    Anywhere        # Caddy HTTPS
-443/udp                    ALLOW IN    Anywhere        # Caddy HTTP/3</code></pre>
+51820/udp                  ALLOW IN    Anywhere                   # allow-wireguard
+59777/tcp on wg0           ALLOW IN    10.6.0.0/24                # SSH-over-Wireguard
+53 on wg0                  ALLOW IN    10.6.0.0/24                # DNS-over-Wireguard
+10.6.0.1 5201 on wg0       ALLOW IN    10.6.0.0/24                # IPERF3
+10.6.0.1 9090/tcp on wg0   ALLOW IN    10.6.0.0/24                # Cockpit
+192.168.0.150 59777/tcp on eth0 ALLOW IN    192.168.0.0/24             # LocalSSH
+10.6.0.1 4443/tcp on wg0   ALLOW IN    10.6.0.0/24                # Pihole WebUI
+192.168.0.150 3015/tcp on eth0 ALLOW IN    192.168.0.0/24             # Homepage
+10.6.0.1 3015/tcp on wg0   ALLOW IN    10.6.0.0/24                # Homepage
+192.168.0.150 53/udp on eth0 ALLOW IN    192.168.0.130              # TrueNAS DNS
+443/tcp                    ALLOW IN    Anywhere                   # Caddy
+443/udp                    ALLOW IN    Anywhere                   # Caddy HTTP/3 QUIK
+
+Anywhere on eth0           ALLOW FWD   10.6.0.0/24 on wg0        
+Anywhere on wg0            ALLOW FWD   Anywhere on wg0            # Allow Wireguard Traversal
+192.168.0.130 8080         ALLOW FWD   10.89.3.0/24               # Caddy to TrueNAS Nextcloud
+
+                </code>
+            </pre>
 
             <div class="warning-box">
                 <strong>Known Issue:</strong> MTU configuration causing reduced network speeds through VPN tunnel - currently investigating optimal MTU settings for Wireguard
