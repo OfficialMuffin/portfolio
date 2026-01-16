@@ -523,19 +523,20 @@ Anywhere on wg0            ALLOW FWD   Anywhere on wg0            # Allow Wiregu
                 <br><br>
                 A seperate wireguard config can be created to manually switch to when ouside the home network or inside.
                 <br><br>
+
+                <h3>Example Wireguard Config</h3>
                 <pre>
-                    Example Wireguard Config
                     <code>
                         [Interface]
-                        PrivateKey = <redacted>
+                        PrivateKey = REDACTED
                         Address = 10.6.0.5/24
                         DNS = 10.6.0.1
                         
                         [Peer]
-                        PublicKey = <redacted>
-                        PresharedKey = <redacted>
+                        PublicKey = REDACTED
+                        PresharedKey = REDACTED
                         AllowedIPs = 0.0.0.0/0, ::/0
-                        Endpoint = <local IP / Public IP / DDNS>:51820
+                        Endpoint = {Local or Public IP}:51820
                     </code>
                 </pre>
                 
