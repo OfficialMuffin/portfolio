@@ -189,6 +189,149 @@
             margin-top: 3rem;
         }
 
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-container {
+            background: #252525;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #2a2a2a;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .image-caption {
+            padding: 1rem;
+            text-align: center;
+            color: #8b9dc3;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .architecture-diagram {
+            background: #252525;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .architecture-diagram img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* Image Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.5);
+            animation: zoomIn 0.3s;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.3s;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .close-modal:hover {
+            color: #667eea;
+            transform: rotate(90deg);
+        }
+
+        .image-container img {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .image-container img:hover {
+            opacity: 0.8;
+        }
+
+        .architecture-diagram img {
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .architecture-diagram img:hover {
+            opacity: 0.8;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
         a {
             color: #667eea;
             text-decoration: none;
@@ -266,6 +409,30 @@
 
             <div class="success-box">
                 <strong>✓ Threats Mitigated:</strong> Successfully blocked enumeration attacks, Cypex.ai scans, Palo Alto network scans, and various bot reconnaissance attempts
+            </div>
+
+            <h3>Visual Documentation</h3>
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="images/cloudflare.png" alt="Cloudflare DNS Records" loading="lazy">
+                    <p class="image-caption">Fig. 1 - Cloudflare DNS Records with Proxy Status</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/cloudflare/secrules.png" alt="Cloudflare Security Rules" loading="lazy">
+                    <p class="image-caption">Fig. 2 - Cloudflare WAF Security Rules</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/cloudflare/enumeration.png" alt="Attempted Enumeration Attack" loading="lazy">
+                    <p class="image-caption">Fig. 3 - Blocked Enumeration Attack</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/cloudflare/blocked.png" alt="Cypex.ai Scan" loading="lazy">
+                    <p class="image-caption">Fig. 4 - Cypex.ai Scan Blocked</p>
+                </div>
+                <div class="image-container">
+                    <img src="images/cloudflare/blocked2.png" alt="Palo Alto Scan" loading="lazy">
+                    <p class="image-caption">Fig. 5 - Palo Alto Scan Blocked</p>
+                </div>
             </div>
         </div>
 
@@ -360,6 +527,12 @@ To                         Action      From
                 <li>Firewall rule verification on both endpoints and Splunk server</li>
                 <li>Network connectivity testing on same subnet (no routing issues)</li>
             </ul>
+
+            <h3>Hardware Setup</h3>
+            <div class="architecture-diagram">
+                <img src="https://www.zimaspace.com/_ipx/w_1536&f_webp/image/products/zimaboard.png" alt="ZimaBoard Development Board" loading="lazy">
+                <p class="image-caption">ZimaBoard - Low-power x86 development board with dual NICs</p>
+            </div>
         </div>
 
         <div class="section">
@@ -405,5 +578,61 @@ To                         Action      From
     <div class="footer">
         <p>Built with security-first mindset | Deploy on GitHub Pages</p>
     </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage" alt="Expanded view">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <script>
+        // Get modal elements
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeBtn = document.querySelector('.close-modal');
+
+        // Get all clickable images
+        const images = document.querySelectorAll('.image-container img, .architecture-diagram img');
+
+        // Add click event to all images
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.classList.add('active');
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                
+                // Get caption from image container or use alt text
+                const caption = this.parentElement.querySelector('.image-caption');
+                modalCaption.textContent = caption ? caption.textContent : this.alt;
+                
+                // Prevent body scroll when modal is open
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modal when clicking X
+        closeBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
 </html>
