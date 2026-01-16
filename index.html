@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab Infrastructure Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: #0a0a0a;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2a2a2a;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .section h3 {
+            color: #8b9dc3;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-card {
+            background: #252525;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .tech-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .tech-card p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+
+        .security-rules {
+            background: #252525;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .security-rules ol {
+            padding-left: 1.5rem;
+        }
+
+        .security-rules li {
+            margin-bottom: 1rem;
+            color: #d0d0d0;
+        }
+
+        .security-rules strong {
+            color: #667eea;
+        }
+
+        code {
+            background: #2a2a2a;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #a8dadc;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #1e1e1e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #2a2a2a;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: #d4d4d4;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+
+        .stat-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .warning-box {
+            background: #2a1a1a;
+            border-left: 4px solid #e74c3c;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .warning-box strong {
+            color: #e74c3c;
+        }
+
+        .success-box {
+            background: #1a2a1a;
+            border-left: 4px solid #2ecc71;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .success-box strong {
+            color: #2ecc71;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            margin-top: 3rem;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #8b9dc3;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🏠 Homelab Infrastructure Portfolio</h1>
+        <p>Self-hosted network infrastructure with enterprise-grade security, VPN, and monitoring</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>🔒 Cloudflare Proxy with Caddy Reverse Proxy</h2>
+            <p>Designed and implemented a self-hosted home network infrastructure utilizing TrueNAS SCALE for centralized data management and service hosting. Key services include Nextcloud for personal cloud storage, eliminating reliance on big tech corporations, all seamlessly integrated behind a secure reverse proxy architecture.</p>
+
+            <div class="tech-stack">
+                <div class="tech-card">
+                    <h4>Caddy Reverse Proxy</h4>
+                    <p>Automated HTTPS reverse proxy in Podman container on Raspberry Pi 5 with Let's Encrypt DNS challenge via Cloudflare</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Cloudflare WAF</h4>
+                    <p>Web Application Firewall providing DDoS protection and threat filtering at the network edge</p>
+                </div>
+                <div class="tech-card">
+                    <h4>TrueNAS SCALE</h4>
+                    <p>Centralized data management and service hosting platform</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Nextcloud</h4>
+                    <p>Self-hosted cloud storage solution with end-to-end encryption</p>
+                </div>
+            </div>
+
+            <h3>Security Features</h3>
+            <div class="stats">
+                <span class="stat-badge">End-to-End Encryption</span>
+                <span class="stat-badge">Public IP Concealment</span>
+                <span class="stat-badge">DNS Challenge TLS</span>
+                <span class="stat-badge">1.42k+ Threats Blocked</span>
+            </div>
+
+            <h3>Cloudflare WAF Rules Implementation</h3>
+            <div class="security-rules">
+                <ol>
+                    <li><strong>Whitelist:</strong> Home IP whitelisted using Skip action to prevent self-blocking</li>
+                    <li><strong>Block Non-UK Traffic:</strong> Geographic restriction with Wireguard VPN fallback for travel (1.42k+ connections blocked)</li>
+                    <li><strong>CrowdSec Integration:</strong> Automated blocklist management via Cloudflare API with challenge system for suspicious IPs</li>
+                    <li><strong>Bot Protection:</strong> Defense against reconnaissance and vulnerability scanning bots</li>
+                    <li><strong>HTTPS Only:</strong> All non-HTTPS traffic blocked at WAF level</li>
+                </ol>
+            </div>
+
+            <div class="success-box">
+                <strong>✓ Threats Mitigated:</strong> Successfully blocked enumeration attacks, Cypex.ai scans, Palo Alto network scans, and various bot reconnaissance attempts
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔐 Wireguard VPN with Pi-Hole</h2>
+            <p>Self-hosted VPN solution with recursive DNS resolver using Unbound and Pi-Hole for ad-blocking, providing secure access to home servers with encrypted traffic protection on public networks.</p>
+
+            <div class="tech-stack">
+                <div class="tech-card">
+                    <h4>Wireguard VPN</h4>
+                    <p>Modern, high-performance VPN for secure remote access to home network</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Pi-Hole</h4>
+                    <p>Network-wide ad blocking and DNS management</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Unbound</h4>
+                    <p>Recursive DNS resolver for enhanced privacy</p>
+                </div>
+                <div class="tech-card">
+                    <h4>UFW Firewall</h4>
+                    <p>Frontend for nftables with default-deny policy</p>
+                </div>
+            </div>
+
+            <h3>Firewall Configuration Highlights</h3>
+            <p>Implemented defense-in-depth strategy using UFW with default deny incoming policy:</p>
+            <ul style="padding-left: 2rem; margin-top: 1rem; color: #d0d0d0;">
+                <li>Single public port (VPN: 58210) for global connectivity</li>
+                <li>All services restricted to local network (192.168.0.0/24) and VPN subnet (10.6.0.0/24)</li>
+                <li>DNS, SSH, and management interfaces only accessible through VPN tunnel</li>
+                <li>Wireguard traffic forwarding with traversal rules</li>
+            </ul>
+
+            <h3>Sample UFW Configuration</h3>
+            <pre><code>Status: active
+Default: deny (incoming), allow (outgoing), deny (routed)
+
+To                         Action      From
+--                         ------      ----
+51820/udp                  ALLOW IN    Anywhere        # Wireguard VPN
+59777/tcp on wg0           ALLOW IN    10.6.0.0/24     # SSH-over-VPN
+53 on wg0                  ALLOW IN    10.6.0.0/24     # DNS-over-VPN
+10.6.0.1 4443/tcp on wg0   ALLOW IN    10.6.0.0/24     # Pi-hole WebUI
+443/tcp                    ALLOW IN    Anywhere        # Caddy HTTPS
+443/udp                    ALLOW IN    Anywhere        # Caddy HTTP/3</code></pre>
+
+            <div class="warning-box">
+                <strong>Known Issue:</strong> MTU configuration causing reduced network speeds through VPN tunnel - currently investigating optimal MTU settings for Wireguard
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 SIEM Implementation with Splunk Enterprise</h2>
+            <p>Deployed Splunk Enterprise on ZimaBoard x86 development board for security monitoring and log aggregation as part of SOC analyst skill development.</p>
+
+            <div class="tech-stack">
+                <div class="tech-card">
+                    <h4>ZimaBoard</h4>
+                    <p>Low-power x86 server with dual NICs, small form factor, ideal for 24/7 operations</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Splunk Enterprise</h4>
+                    <p>Industry-standard SIEM for log collection, monitoring, and security analytics</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Splunk Forwarder</h4>
+                    <p>Deployed on Windows and Linux endpoints for centralized log collection</p>
+                </div>
+            </div>
+
+            <h3>ZimaBoard Selection Criteria</h3>
+            <ul style="padding-left: 2rem; margin-top: 1rem; color: #d0d0d0;">
+                <li>x86 architecture for broad software compatibility (vs ARM Raspberry Pi)</li>
+                <li>Compact form factor for flexible deployment</li>
+                <li>Low power consumption compared to traditional servers</li>
+                <li>Dual NICs enabling potential firewall/router use cases</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Technical Challenge:</strong> KVStore failure due to Intel Celeron N3450 lacking AVX instruction set required for MongoDB 4.2+
+                <br><br>
+                Error: <code>KV Store process terminated abnormally (exit code 4, signal 4: Illegal instruction)</code>
+                <br><br>
+                Root Cause: ZimaBoard CPU missing advanced x86 instruction sets present in higher-end processors
+            </div>
+
+            <h3>Current Investigations</h3>
+            <ul style="padding-left: 2rem; margin-top: 1rem; color: #d0d0d0;">
+                <li>Windows Event Viewer analysis for forwarder connection issues</li>
+                <li>Firewall rule verification on both endpoints and Splunk server</li>
+                <li>Network connectivity testing on same subnet (no routing issues)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>🛠️ Technical Skills Demonstrated</h2>
+            <div class="tech-stack">
+                <div class="tech-card">
+                    <h4>Network Security</h4>
+                    <p>Firewall configuration, WAF rules, DDoS mitigation, threat analysis</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Infrastructure as Code</h4>
+                    <p>Containerization (Podman), automation, configuration management</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Systems Administration</h4>
+                    <p>Linux (TrueNAS, Raspberry Pi), Windows, networking, DNS management</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Security Operations</h4>
+                    <p>SIEM deployment, log analysis, incident detection, threat hunting</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Cryptography & PKI</h4>
+                    <p>TLS/SSL, certificate management, encrypted tunneling (VPN)</p>
+                </div>
+                <div class="tech-card">
+                    <h4>Troubleshooting</h4>
+                    <p>Root cause analysis, debugging, performance optimization</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Career Goals</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Building practical experience for <strong>L1 SOC Analyst</strong> role through hands-on homelab implementation. 
+                This project demonstrates real-world security monitoring, incident detection, and infrastructure hardening skills 
+                essential for cybersecurity operations.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Built with security-first mindset | Deploy on GitHub Pages</p>
+    </div>
+</body>
+</html>
