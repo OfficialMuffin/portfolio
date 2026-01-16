@@ -519,11 +519,7 @@ Anywhere on wg0            ALLOW FWD   Anywhere on wg0            # Allow Wiregu
                 <strong>✓ Workaround:</strong> As my ISP’s limited upload capacity combined with the encryption overhead of a VPN significantly throttles download speeds. 
                 I modified the WireGuard configuration to replace the public IP/DDNS endpoint with the VPN server’s local IP address. 
                 This change restores the majority of the available download bandwidth and throughput. However, the encryption overhead still incurs a modest 10–15 % speed reduction, but overall 
-                the net performance improvement is substantial.
-                <br><br>
-                A seperate wireguard config can be created to manually switch to when ouside the home network or inside.
-                <br><br>
-
+                the net performance improvement is substantial. Additionally, A seperate wireguard config can be created to manually switch to when ouside the home network or inside.
                 <h3>Example Wireguard Config</h3>
                 <pre>
                     <code>
