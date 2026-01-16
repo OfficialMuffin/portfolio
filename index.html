@@ -462,13 +462,13 @@
             <h3>Firewall Configuration Highlights</h3>
             <p>Implemented defense-in-depth strategy using UFW with default deny incoming policy:</p>
             <ul style="padding-left: 2rem; margin-top: 1rem; color: #d0d0d0;">
-                <li>Single public port (VPN: 58210) for global connectivity</li>
+                <li>Minimal publicly exposed ports (VPN: 58210 & HTTPS: 443) for global connectivity</li>
                 <li>All services restricted to local network (192.168.0.0/24) and VPN subnet (10.6.0.0/24)</li>
                 <li>DNS, SSH, and management interfaces only accessible through VPN tunnel</li>
                 <li>Wireguard traffic forwarding with traversal rules</li>
             </ul>
 
-            <h3>Sample UFW Configuration</h3>
+            <h3>UFW Configuration</h3>
             <pre>
                 <code>
 Status: active
@@ -500,6 +500,22 @@ Anywhere on wg0            ALLOW FWD   Anywhere on wg0            # Allow Wiregu
 
             <div class="warning-box">
                 <strong>Known Issue:</strong> MTU configuration causing reduced network speeds through VPN tunnel - currently investigating optimal MTU settings for Wireguard
+            </div>
+
+            <div class="success-box">
+                <strong>✓ Workaround:</strong> Problem
+My ISP’s limited upload capacity combined with the encryption overhead of a VPN significantly throttles download speeds.
+
+Solution
+I modified the WireGuard configuration to replace the public IP/DDNS endpoint with the VPN server’s local IP address. This change captures the majority of the available download bandwidth.
+
+Outcome
+
+    Speed gain: Near‑full restoration of download throughput.
+    Residual impact: Encryption still incurs a modest 10–15 % speed reduction, but the net performance improvement is substantial.
+
+Trade‑off
+Switching to the local IP disables the encrypted tunnel and the integrated ad‑blocking. To regain those privacy and security benefits, the endpoint must be reverted to the public IP/DDNS.
             </div>
         </div>
 
