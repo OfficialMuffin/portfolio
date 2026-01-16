@@ -1,0 +1,7 @@
+*.json
+*.ts
+*.md
+*.cjs
+*.js
+*.mjs
+node_modules
