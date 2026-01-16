@@ -516,21 +516,29 @@ Anywhere on wg0            ALLOW FWD   Anywhere on wg0            # Allow Wiregu
             </div>
 
             <div class="caution-box">
-                <strong>✓ Workaround:</strong> Problem:
-                <br>
-My ISP’s limited upload capacity combined with the encryption overhead of a VPN significantly throttles download speeds.
-<br>
-Solution:
-I modified the WireGuard configuration to replace the public IP/DDNS endpoint with the VPN server’s local IP address. This change captures the majority of the available download bandwidth.
-<br>
-Outcome:
-<br>
-    Speed gain: Near‑full restoration of download throughput.
-    Residual impact: Encryption still incurs a modest 10–15 % speed reduction, but the net performance improvement is substantial.
-<br>
-Trade‑off:
-
-Switching to the local IP disables the encrypted tunnel and the integrated ad‑blocking. To regain those privacy and security benefits, the endpoint must be reverted to the public IP/DDNS.
+                <strong>✓ Workaround:</strong> As my ISP’s limited upload capacity combined with the encryption overhead of a VPN significantly throttles download speeds. 
+                I modified the WireGuard configuration to replace the public IP/DDNS endpoint with the VPN server’s local IP address. 
+                This change restores the majority of the available download bandwidth and throughput. However, the encryption overhead still incurs a modest 10–15 % speed reduction, but overall 
+                the net performance improvement is substantial.
+                <br><br>
+                A seperate wireguard config can be created to manually switch to when ouside the home network or inside.
+                <br><br>
+                <pre>
+                    Example Wireguard Config
+                    <code>
+                        [Interface]
+                        PrivateKey = <redacted>
+                        Address = 10.6.0.5/24
+                        DNS = 10.6.0.1
+                        
+                        [Peer]
+                        PublicKey = <redacted>
+                        PresharedKey = <redacted>
+                        AllowedIPs = 0.0.0.0/0, ::/0
+                        Endpoint = <local IP / Public IP / DDNS>:51820
+                    </code>
+                </pre>
+                
             </div>
         </div>
 
